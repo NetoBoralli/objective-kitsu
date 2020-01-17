@@ -1,0 +1,41 @@
+.upper {
+  padding-bottom: 34px;
+  font-size: 27px;
+  font-weight: 300;
+  line-height: 32px;
+
+  .strong {
+    font-weight: 900;
+    position: relative;
+  }
+
+  .strong::after {
+    display: block;
+    content: '';
+    width: 54px;
+    height: 4px;
+    background: #D42026;
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+  }
+
+  .end {
+    float: right;
+  }
+}
+
+// MEDIA QUERIES 
+
+@media only screen and (max-width: 790px) {
+  .end {
+    display: none;
+  }
+
+  .text.upper {
+    font-size: 16px;
+    line-height: 19px;
+    padding-bottom: 12px;
+  }
+
+}

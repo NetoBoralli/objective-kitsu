@@ -1,0 +1,31 @@
+.container {
+  padding: 20px 42px 16px 42px;
+  height: calc(100vh - 48px);
+}
+
+.top {
+  overflow-y: auto;
+}
+
+.bottom {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+}
+
+// MEDIA QUERIES
+
+@media only screen and (max-width: 790px) {
+  .container {
+    padding: 12px 0 0 0;
+  }
+
+  .top {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
