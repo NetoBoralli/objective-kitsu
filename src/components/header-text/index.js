@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import './index.scss';
+import './style.scss';
 
 function HeaderText() {
   const [pageTitle] = useState('BUSCA KITSU');

@@ -2,8 +2,11 @@ import React from 'react';
 
 import HeaderText from '../../components/header-text';
 import Input from '../../components/input';
+import Table from '../../components/table';
+import Footer from '../../components/footer';
+import Pagination from '../../components/pagination';
 
-import './index.scss';
+import './style.scss';
 
 function Main() {
   return (
@@ -11,10 +14,12 @@ function Main() {
       <div className="top">
         <HeaderText />
         <Input />
+        <Table />
       </div>
 
       <div className="bottom">
-
+        <Pagination />
+        <Footer />
       </div>
     </div>
   );
