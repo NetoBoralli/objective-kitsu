@@ -10,5 +10,5 @@ export const formatText = (text, length = null) => {
     const last = text.lastIndexOf(" ");
     text = text.substring(0, last).concat('...');
   }
-  return text.replace(/<\/?[^>]+(>|$)/g, " ");
+  return text.replace(/<\/?[^>]+(>|$)/g, ". ");
 }

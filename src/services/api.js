@@ -4,9 +4,12 @@ const api = axios.create({
   baseURL: 'https://kitsu.io/api/edge/'
 })
 
-export const get = (search) => {
+export const get = (search, offset, path = null) => {
   return new Promise((resolve, reject) => {
-    api.get(`characters?page[limit]=10&page[offset]=0${search && search.length > 0 ? '&filter[name]=' + search : ''}`)
+    let url = path || `characters?page[limit]=10&page[offset]=${offset}`;
+    if (search && search.length > 0)
+      url = url + `&filter[name]=${search}`;
+    api.get(url)
       .then(result => {
         resolve(result.data);
       })
