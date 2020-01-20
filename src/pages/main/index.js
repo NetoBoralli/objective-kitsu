@@ -17,15 +17,30 @@ function Main() {
   const [offset, setOffset] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
   const [search, setSearch] = useState('');
+  const [inputValue, setInputValue] = useState('');
 
   useEffect(() => {
-    loadCharacters();
+    const storedPage = localStorage.getItem('page');
+    if (storedPage)
+      setPage(Number(storedPage))
+
+    const storedOffset = localStorage.getItem('offset');
+    if (storedOffset)
+      setOffset(Number(storedOffset));
+
+    const storedSearch = localStorage.getItem('search');
+    if (storedSearch) {
+      setSearch(storedSearch);
+      setInputValue(storedSearch);
+    }
+
+    loadCharacters(storedSearch, storedOffset);
   }, [])
 
-  const loadCharacters = async (search = null) => {
-    setSearch(search);
+  const loadCharacters = async (search = null, selectedOffset = null) => {
+    setSearchHelper(search);
     setTableDataLoaded(false);
-    const result = await get(search, offset);
+    const result = await get(search, selectedOffset || offset);
     setTableDataLoaded(true);
     setCharacters(result.data);
     setLinks(result.links);
@@ -39,8 +54,8 @@ function Main() {
     const result = await get(null, null, links.next);
     setTableDataLoaded(true);
     setCharacters(result.data);
-    setOffset(offset + 10);
-    setPage(page + 1);
+    setOffsetHelper(offset + 10);
+    setPageHelper(page + 1);
     setLinks(result.links);
   }
 
@@ -50,8 +65,8 @@ function Main() {
     const result = await get(null, null, links.prev);
     setTableDataLoaded(true);
     setCharacters(result.data);
-    setOffset(offset - 10);
-    setPage(page - 1);
+    setOffsetHelper(offset - 10);
+    setPageHelper(page - 1);
     setLinks(result.links);
   }
 
@@ -62,21 +77,38 @@ function Main() {
     const result = await get(search, newOffset);
     setTableDataLoaded(true);
     setCharacters(result.data);
-    setOffset(newOffset);
-    setPage(selectedPage);
+    setOffsetHelper(newOffset);
+    setPageHelper(selectedPage);
     setLinks(result.links);
+  }
+
+  const setPageHelper = (page) => {
+    localStorage.setItem('page', page);
+    setPage(page);
+  }
+
+  const setOffsetHelper = (offset) => {
+    localStorage.setItem('offset', offset);
+    setOffset(offset);
+  }
+
+  const setSearchHelper = (search) => {
+    if (search === null)
+      search = '';
+    localStorage.setItem('search', search);
+    setSearch(search);
   }
 
   return (
     <>
       <div className="top">
-        <Input loadCharacters={loadCharacters} />
+        <Input value={inputValue} loadCharacters={loadCharacters} />
         <Table characters={characters} tableDataLoaded={tableDataLoaded} />
       </div>
 
       <div className="bottom">
         {totalPagesLoaded &&
-          <Pagination page={page} totalPages={totalPages} nextPage={nextPage} hasNextPage={links?.next} prevPage={prevPage} hasPrevPage={links?.prev} goToPage={goToPage}/>
+          <Pagination page={page} totalPages={totalPages} nextPage={nextPage} hasNextPage={links?.next} prevPage={prevPage} hasPrevPage={links?.prev} goToPage={goToPage} />
         }
         <Footer />
       </div>

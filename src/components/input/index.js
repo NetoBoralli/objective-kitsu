@@ -1,16 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import AwesomeDebouncePromise from 'awesome-debounce-promise';
 
 import './style.scss';
 
-function Input({ loadCharacters }) {
-  const debounceLoad = AwesomeDebouncePromise(loadCharacters, 400)
+function Input({ value, loadCharacters }) {
+  const debounceLoad = AwesomeDebouncePromise(loadCharacters, 200)
   const [label] = useState('Nome do Personagem');
+
+  useEffect(() => {
+    document.getElementById('input').value = value;
+  }, [value])
 
   return (
     <div className="input-box">
       <span className="text">{label}</span> <br />
-      <input onChange={e => debounceLoad(e.target.value)} type="text" />
+      <input id="input" onChange={e => debounceLoad(e.target.value)} type="text"/>
     </div>
   );
 }
