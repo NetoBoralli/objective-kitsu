@@ -13,7 +13,7 @@ td {
   line-height: 24px;
   min-height: 72px;
   max-height: 72px;
-  border-bottom: 3px solid rgba(212, 32, 38, .1);
+  border-bottom: 3px solid rgba(212, 32, 38, .2);
 }
 
 th {
@@ -53,6 +53,13 @@ th:first-child {
 
 .character-name {
   padding-left: 25px;
+}
+
+.character-table tr:hover td
+{
+  // background-color: #D42026;
+  background-color: rgba(212, 32, 38, .2);
+  cursor: pointer;
 }
 
 // MEDIA QUERIES

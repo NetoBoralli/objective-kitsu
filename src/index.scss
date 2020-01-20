@@ -1,0 +1,22 @@
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+}
+.container {
+  padding: 20px 42px 16px 42px;
+  height: calc(100vh - (80px));
+  overflow-y: auto;
+}
+
+@media only screen and (max-width: 790px) {
+  .container {
+    padding: 12px 0 0 0;
+  }
+
+  .header-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}

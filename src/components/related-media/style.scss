@@ -1,0 +1,48 @@
+.media-text {
+  font-size: 16px;
+  color: rgba(212, 32, 38, .9);
+  padding: 12px 0;
+}
+  
+.related-box {
+  display: flex;
+  flex-direction: row;
+  padding: 12px 0;
+  max-height: 400px;
+  max-width: calc(100vw - (400px));
+  overflow-x: auto;
+}
+
+.card {
+  min-width: 172px;
+  max-width: 172px;
+  min-height: 350px;
+  max-height: 350px;
+  margin: 0 6px;
+}
+
+.card-image {
+  width: 140p;
+  height: 200px;
+}
+
+.card-title {
+  font-size: 18px !important;
+  color: #D42026;
+}
+
+.card-type {
+  font-size: 14px !important;
+  color: rgba(212, 32, 38, .5);
+}
+
+
+// MEDIA  QUERIES
+
+@media only screen and (max-width: 790px) {
+  .related-box {
+    width: 100% !important;
+    max-width: 100%;
+    min-width: 100%;
+  }
+}  
